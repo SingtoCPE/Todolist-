@@ -32,6 +32,24 @@ const db = mysql.createConnection({
     res.redirect("/");
   })
 //-------------------------------------------------------------------------------
+app.post("/adduserone", function(req, res) {
+  console.log(req.body.length);
+  
+    var item = req.body;
+    var id = item.id;
+    var name = item.name;
+  
+    console.log(id, name);
+    db.query("INSERT INTO myDB.myTB (id, name) VALUES ('" + id + "', '" + name + "')", function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted");
+  });
+  
+  
+  res.redirect("/");
+})
+
+//-------------------------------------------------------------------------------
 
   app.get('/',(req,res)=> {                        //get all             
     let sql = 'SELECT * FROM myDB.myTB;'                              
@@ -62,7 +80,7 @@ const db = mysql.createConnection({
   })
 //-------------------------------------------------------------------------------
 
-app.put('/update', function (req, res) {
+app.put('/updateuser', function (req, res) {
   db.query("UPDATE myDB.myTB SET id='s2.1' WHERE id='s2'", function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
