@@ -80,8 +80,12 @@ app.post("/adduserone", function(req, res) {        //add one by one
   })
 //-------------------------------------------------------------------------------
 
-app.put('/updateuser', function (req, res) {        //update
-  db.query("UPDATE myDB.myTB SET id='s2.1' WHERE id='s2'", function (err, result) {
+app.put('/updateuser', function (req, res) {      //update
+  var item = req.body;
+  var orders = item.orders;
+  var id = item.id;
+  var name = item.name;
+  db.query("UPDATE myDB.myTB SET id = '" + id + "', name = '" + name + "' WHERE orders="+ orders, function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
   });
