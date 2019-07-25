@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   app.use(bodyParser.json() );                                  
   app.use(bodyParser.urlencoded({extended: true})); 
 //-------------------------------------------------------------------------------
-  app.post("/adduser", function(req, res) {
+  app.post("/adduser", function(req, res) {     //add more one
     console.log(req.body.length);
     
     var i;
@@ -32,7 +32,7 @@ const db = mysql.createConnection({
     res.redirect("/");
   })
 //-------------------------------------------------------------------------------
-app.post("/adduserone", function(req, res) {
+app.post("/adduserone", function(req, res) {        //add one by one
   console.log(req.body.length);
   
     var item = req.body;
@@ -69,7 +69,7 @@ app.post("/adduserone", function(req, res) {
     })
   })
 //-------------------------------------------------------------------------------  
-  app.delete('/deluser', function (req, res) {
+  app.delete('/deluser', function (req, res) {    //delete more one
     
     let sql = `DELETE FROM myDB.myTB WHERE orders between 16 and 30`;
     let query = db.query(sql,(err,results) => {                       
@@ -80,7 +80,7 @@ app.post("/adduserone", function(req, res) {
   })
 //-------------------------------------------------------------------------------
 
-app.put('/updateuser', function (req, res) {
+app.put('/updateuser', function (req, res) {        //update
   db.query("UPDATE myDB.myTB SET id='s2.1' WHERE id='s2'", function (err, result) {
     if (err) throw err;
     console.log("1 record updated");
