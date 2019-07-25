@@ -22,10 +22,10 @@ const db = mysql.createConnection({
       var id = item.id;
       var name = item.name;
     
-      //console.log(id, name);
+      console.log(id, name);
       db.query("INSERT INTO myDB.myTB (id, name) VALUES ('" + id + "', '" + name + "')", function (err, result) {
       if (err) throw err;
-      //console.log("1 record inserted");
+      console.log("1 record inserted");
     });
     
     }
@@ -62,6 +62,16 @@ const db = mysql.createConnection({
   })
 //-------------------------------------------------------------------------------
 
+app.put('/update', function (req, res) {
+  db.query("UPDATE myDB.myTB SET id='s2.1' WHERE id='s2'", function (err, result) {
+    if (err) throw err;
+    console.log("1 record updated");
+  });
+  res.redirect("/");
+});
+
+//-------------------------------------------------------------------------------
   app.listen('3000',() => {     //
+
     console.log('start port 3000')  
   })
